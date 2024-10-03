@@ -6,9 +6,7 @@ int random(int start, int stop){
    return start + rand() % (stop - start + 1);
 }
 
-// func
 
-// TODO: бот бінарний пошук
 int read_int(int value, int attemp) {
     printf("Random count generator game \n");
     for (int i = 0; i<attemp; i++) {
