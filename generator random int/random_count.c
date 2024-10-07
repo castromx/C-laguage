@@ -7,18 +7,18 @@ int random(int start, int stop){
 }
 
 
-int read_int(int value, int attemp) {
+int read_int(int value, int attemp, int min, int max) {
     printf("Random count generator game \n");
     for (int i = 0; i<attemp; i++) {
-        printf("Input target value = ");
         int target;
-        scanf("%d", &target);
-        getchar();
+        target = min + rand() % (min - max + 1);
         if (target < value) {
             printf("Your targed is less than random value \n");
+            min++;
         }
         else if (target > value) {
             printf("Your targed is greaten than random value \n");
+            max++;
         }
         else {
             return 1;
@@ -26,7 +26,6 @@ int read_int(int value, int attemp) {
     }
     return 0;
 }
-
 int main(void) {
     srand(time(0));
     const int attemp = 10;
