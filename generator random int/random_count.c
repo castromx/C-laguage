@@ -8,24 +8,28 @@ int random(int start, int stop){
 
 
 int read_int(int value, int attemp, int min, int max) {
-    printf("Random count generator game \n");
-    for (int i = 0; i<attemp; i++) {
-        int target;
-        target = min + rand() % (min - max + 1);
+    printf("Random number guessing using binary search\n");
+    for (int i = 0; i < attemp; i++) {
+        int target = (min + max) / 2;
+        
+        
         if (target < value) {
-            printf("Your targed is less than random value \n");
-            min++;
+            printf("The guessed number %d is less than the actual value act min = %d, max = %d.\n", target, min, max);
+            min = target + 1;
         }
         else if (target > value) {
-            printf("Your targed is greaten than random value \n");
-            max++;
+            printf("The guessed number %d is greater than the actual value act min = %d, max = %d.\n", target, min, max);
+            max = target - 1;
         }
         else {
+            printf("Computer guessed the number %d correctly!\n", target);
             return 1;
         }
+        printf("Attempt %d: Computer guesses %d\n", i + 1, target);
     }
     return 0;
 }
+
 int main(void) {
     srand(time(0));
     const int attemp = 10;
@@ -33,7 +37,8 @@ int main(void) {
     const int max = 100;
     printf("I generated for you count from %d to %d, you have %d attemps \n", min, max, attemp);
     int value = random(min, max);
-    if (read_int(value, attemp)) {
+    printf("value is %d", value);
+    if (read_int(value, attemp, min, max)) {
         printf("You win");
     }
     else {
